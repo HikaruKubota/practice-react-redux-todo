@@ -1,0 +1,16 @@
+// アクションクリエイター？
+export const inputTask = task => ({
+  type: 'INPUT_TASK',
+  payload: {
+    task
+  }
+})
+
+// アクションクリエイター？
+export const addTask = task => ({
+  type: 'ADD_TASK',
+  payload: {
+    task
+  }
+})
+
