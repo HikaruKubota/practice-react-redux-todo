@@ -1,26 +1,27 @@
-import { connect } from 'react-redux'
-import TodoApp from '../ccomponents/TodoApp'
-import { inputTask, addTask } from '../actions/tasks'
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import TodoApp from '../components/TodoApp';
+import { inputTask, addTask } from '../actions/tasks';
 
-// 名前のまんまらしい StateをPropsにする（ReduxのやつをReactとして使えるようにするような感じ）
-function mapStateToProps({task, tasks}) {
+function mapStateToProps(state) {
   return {
-    task,
-    tasks
-  }
+    task: state.tasks.task,
+    tasks: state.tasks.tasks
+  };
 }
 
-// これも名前のまんま DispatchをPropsにする感じ。
 function mapDispatchToProps(dispatch) {
   return {
-    addTask(task){
-      dispatch(addTask(task))
+    addTask(task) {
+      dispatch(addTask(task));
     },
-    inputTask(task){
+    inputTask(task) {
       dispatch(inputTask(task))
+    },
+    redirectToError() {
+      dispatch(push('/error'));
     }
-  }
+  };
 }
 
-// ここで紐付け？
-export default connect(mapStateToProps, mapDispatchToProps)(TodoApp)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
